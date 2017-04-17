@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -45,19 +46,58 @@ namespace BoxFileEditor
     ///     <MyNamespace:TessBoxView/>
     ///
     /// </summary>
-    public class TessImageView : MultiSelector
+    public class TessImageView : MultiSelector, INotifyPropertyChanged
     {
         public static readonly DependencyProperty ImageProperty =
             DependencyProperty.Register("Image", typeof (BitmapSource), typeof (TessImageView), new PropertyMetadata(default(BitmapSource)));
 
+        public static readonly DependencyProperty ScaleProperty =
+            DependencyProperty.Register("Scale", typeof(Double), typeof(TessImageView), new PropertyMetadata(default(Double)));
+
         public BitmapSource Image
         {
-            get { return (BitmapSource) GetValue(ImageProperty); }
-            set { SetValue(ImageProperty, value); }
+            get { return (BitmapSource)GetValue(ImageProperty); }
+            set {
+                SetValue(ImageProperty, value);
+                OnPropertyChanged("ResizedHeight");
+                OnPropertyChanged("ResizedWidth");
+                UpdateScale();
+            }
         }
+        
+        
+        public double Scale
+        {
+            get { return (double)GetValue(ScaleProperty); }
+            set
+            {
+                if (value > 1.0) value = 1;
+                if (value < 0) value = 0;
+                SetValue(ScaleProperty,value);
+                OnPropertyChanged("ResizedHeight");
+                OnPropertyChanged("ResizedWidth");
+                UpdateScale();
+            }
+        }
+
+        public int ResizedWidth {
+            get
+            {
+                return (int)(Math.Round(Scale * Image.PixelWidth));
+            }
+        }
+        public int ResizedHeight {
+            get
+            {
+                return (int)(Math.Round(Scale * Image.PixelHeight));
+            }
+        }
+
+ 
 
         private Image _backImage = null;
         private Grid _boxHost = null;
+        private Viewbox _boxResizer = null;
         private Canvas _rubberBandHost = null;
         private Rectangle _rubberBand = null;
 
@@ -67,6 +107,7 @@ namespace BoxFileEditor
         public event EventHandler DeleteSelected;
         public event EventHandler MergeSelected;
         public event CreateBoxHandler CreateBox;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         static TessImageView()
         {
@@ -75,6 +116,12 @@ namespace BoxFileEditor
 
         public TessImageView()
         {
+        }
+
+        public void UpdateScale()
+        {
+            _boxResizer.Width = ResizedWidth;
+            _boxResizer.Height = ResizedHeight;
         }
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)
@@ -185,6 +232,7 @@ namespace BoxFileEditor
             _boxHost = GetTemplateChild("boxHost") as Grid;
             _backImage = GetTemplateChild("backImage") as Image;
             _rubberBandHost = GetTemplateChild("rubberBandHost") as Canvas;
+            _boxResizer = GetTemplateChild("boxResizer") as Viewbox;
 
             _boxHost.MouseLeftButtonDown += _boxHost_MouseLeftButtonDown;
             _boxHost.MouseLeftButtonUp += _boxHost_MouseLeftButtonUp;
@@ -350,6 +398,16 @@ namespace BoxFileEditor
             base.PrepareContainerForItemOverride(element, item);
         }
 
+
+        // Create the OnPropertyChanged method to raise the event
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
     }
 
     public delegate void CreateBoxHandler(object sender, Rect bounds);

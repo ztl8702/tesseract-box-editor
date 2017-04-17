@@ -18,11 +18,16 @@
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
                         <ScrollViewer Grid.Column="0" x:Name="viewScroller" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" BorderThickness="0" Margin="0" Padding="0">
-                            <Grid x:Name="boxHost" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
-                                <Image x:Name="backImage" Source="{Binding Path=Image, RelativeSource={RelativeSource TemplatedParent}}" Stretch="None" />
-                                <ItemsPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                                <Canvas x:Name="rubberBandHost" />
-                            </Grid>
+                            <Viewbox x:Name="boxResizer"  Margin="10"
+                                     Width="{Binding ResizedWidth, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                     Height="{Binding ResizedHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" Stretch="UniformToFill">
+                                    <Grid x:Name="boxHost" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                                        <Image x:Name="backImage" Source="{Binding Path=Image, RelativeSource={RelativeSource TemplatedParent}}" Stretch="None" 
+                                       />
+                                        <ItemsPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                        <Canvas x:Name="rubberBandHost" />
+                                    </Grid>
+                            </Viewbox>
                         </ScrollViewer>
                     </Border>
                 </ControlTemplate>

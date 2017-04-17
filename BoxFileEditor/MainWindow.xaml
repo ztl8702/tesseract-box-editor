@@ -52,6 +52,7 @@
                         <TextBlock Text="ZoomOut"/>
                     </StackPanel>
                 </Button>
+                <Slider x:Name="sliderScale"  Margin="0,0,0,0.2" Width="69" Maximum="1" Minimum="0" Value="1" ValueChanged="sliderScale_ValueChanged"></Slider>
                 <Separator Margin="5,0" />
                 <Button x:Name="menuMerge" Click="btnMerge_Click">
                     <StackPanel>
@@ -94,7 +95,7 @@
                 <ColumnDefinition Width="7" />
                 <ColumnDefinition Width="175"/>
             </Grid.ColumnDefinitions>
-            <local:TessImageView Grid.Column="0" x:Name="boxView" Image="{Binding Image}" ItemsSource="{Binding Boxes}" SelectionChanged="boxView_SelectionChanged" BorderThickness="1" BorderBrush="sc# 0.1,0,0,0" DeleteSelected="boxView_DeleteSelected" CreateBox="boxView_CreateBox" MergeSelected="boxView_MergeSelected" />
+            <local:TessImageView Grid.Column="0" x:Name="boxView" Scale="{Binding ElementName=sliderScale,Path=Value}" Image="{Binding Image}" ItemsSource="{Binding Boxes}" SelectionChanged="boxView_SelectionChanged" BorderThickness="1" BorderBrush="sc# 0.1,0,0,0" DeleteSelected="boxView_DeleteSelected" CreateBox="boxView_CreateBox" MergeSelected="boxView_MergeSelected" />
             <GridSplitter Grid.Column="1" VerticalAlignment="Stretch" ResizeBehavior="PreviousAndNext" ResizeDirection="Columns" HorizontalAlignment="Stretch" Margin="0" />
             <ListBox Grid.Column="2" x:Name="boxList" ItemsSource="{Binding Boxes}" SelectionChanged="boxList_SelectionChanged" SelectionMode="Extended" BorderThickness="1" BorderBrush="sc# 0.1,0,0,0" >
                 <ListBox.ItemTemplate>

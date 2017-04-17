@@ -169,6 +169,7 @@ namespace BoxFileEditor
                 try
                 {
                     _viewModel.Load(openDlg.FileName);
+                    boxView.UpdateScale();
                 }
                 catch (Exception ex)
                 {
@@ -221,5 +222,10 @@ namespace BoxFileEditor
             _viewModel.DeleteSelectedBoxes(boxView.SelectedItems.Cast<TessBoxControl>());
         }
 
+
+        private void sliderScale_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (boxView!=null)  boxView.UpdateScale();
+        }
     }
 }
