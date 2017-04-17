@@ -49,6 +49,7 @@ x64/
 build/
 [Bb]in/
 [Oo]bj/
+_Debug/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
@@ -214,3 +215,4 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+

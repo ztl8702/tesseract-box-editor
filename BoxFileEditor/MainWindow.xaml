@@ -36,6 +36,23 @@
                     <xctk:IntegerUpDown x:Name="udPage" Width="60" Value="{Binding SelPageIndex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Maximum="{Binding MaxPageIndex}" Minimum="0" />
                 </StackPanel>
                 <Separator Margin="5,0" />
+                <Button x:Name="menuZoomIn" Click="btnZoomIn_Click">
+                    <StackPanel>
+                        <Grid HorizontalAlignment="Center">
+                            <local:BitmapControl Source="Images/Delete.png"/>
+                        </Grid>
+                        <TextBlock Text="ZoomIn"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="menuZoomOut" Click="btnZoomOut_Click">
+                    <StackPanel>
+                        <Grid HorizontalAlignment="Center">
+                            <local:BitmapControl Source="Images/Delete.png"/>
+                        </Grid>
+                        <TextBlock Text="ZoomOut"/>
+                    </StackPanel>
+                </Button>
+                <Separator Margin="5,0" />
                 <Button x:Name="menuMerge" Click="btnMerge_Click">
                     <StackPanel>
                         <Grid HorizontalAlignment="Center">
@@ -50,6 +67,14 @@
                             <local:BitmapControl Source="Images/Delete.png"/>
                         </Grid>
                         <TextBlock Text="Delete"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="menuAdd" Click="btnAdd_Click">
+                    <StackPanel>
+                        <Grid HorizontalAlignment="Center">
+                            <local:BitmapControl Source="Images/Insert.png"/>
+                        </Grid>
+                        <TextBlock Text="Insert"/>
                     </StackPanel>
                 </Button>
             </ToolBar>

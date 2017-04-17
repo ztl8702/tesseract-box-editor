@@ -309,11 +309,13 @@ namespace BoxFileEditor
 
                     var width = right - left;
                     var height = bottom - top;
-                    
-                    var box = new TessBoxControl();
-                    box.Value = boxValue;
-                    box.Width = width;
-                    box.Height = height;
+
+                    var box = new TessBoxControl()
+                    {
+                        Value = boxValue,
+                        Width = width,
+                        Height = height
+                    };
                     Canvas.SetLeft(box, left);
                     Canvas.SetTop(box, top);
 
@@ -385,6 +387,7 @@ namespace BoxFileEditor
             keep.Height = bounds.Height;
         }
 
+
         public void DeleteSelectedBoxes(IEnumerable<TessBoxControl> selectedBoxes)
         {
             var remove = new List<TessBoxControl>(selectedBoxes);
@@ -392,5 +395,23 @@ namespace BoxFileEditor
                 Boxes.Remove(box);
         }
 
+        public void AddAfterSelectedBoxes(IEnumerable<TessBoxControl> selectedBoxes)
+        {
+            var box = selectedBoxes.LastOrDefault();
+            if (box != null)
+            {
+                var pos = Boxes.IndexOf(box);
+                var newBox = new TessBoxControl()
+                {
+                    Width = box.Width,
+                    Height = box.Height,
+                    Value = "n"
+                };
+                Canvas.SetLeft(newBox, box.Left + box.Width);
+                Canvas.SetTop(newBox, box.Top);
+                Boxes.Insert(pos+1, newBox);
+            }
+
+        }
     }
 }

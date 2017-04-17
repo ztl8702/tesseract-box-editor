@@ -108,6 +108,21 @@ namespace BoxFileEditor
             _viewModel.DeleteSelectedBoxes(boxView.SelectedItems.Cast<TessBoxControl>());
         }
 
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.AddAfterSelectedBoxes(boxView.SelectedItems.Cast<TessBoxControl>());
+        }
+
+        private void btnZoomIn_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btnZoomOut_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         protected override void OnPreviewKeyDown(KeyEventArgs e)
         {
             if (e.Key == Key.PageUp)
