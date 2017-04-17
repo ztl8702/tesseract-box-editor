@@ -60,6 +60,9 @@
     <Compile Include="Controls\TessBoxPanel.cs" />
     <Compile Include="Controls\TessImageView.cs" />
     <Compile Include="Controls\TessBoxControl.cs" />
+    <Compile Include="HelpWnd.xaml.cs">
+      <DependentUpon>HelpWnd.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SelectedBoxWnd.xaml.cs">
       <DependentUpon>SelectedBoxWnd.xaml</DependentUpon>
     </Compile>
@@ -79,6 +82,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="HelpWnd.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SelectedBoxWnd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -122,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Create.png" />
+    <Resource Include="Images\Insert.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

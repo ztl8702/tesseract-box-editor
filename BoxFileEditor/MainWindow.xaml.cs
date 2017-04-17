@@ -21,6 +21,7 @@ namespace BoxFileEditor
     public partial class MainWindow : Window
     {
         private SelectedBoxWnd _boxWnd = null;
+        private HelpWnd _helpWnd = null;
 
         private MainViewModel _viewModel = null;
 
@@ -186,6 +187,14 @@ namespace BoxFileEditor
             {
                 MessageBox.Show(string.Format("Unable to save box file, {0}", ex.GetBaseException().Message), MainViewModel.AppTitle, MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+
+        private void menuHelp_Click(object sender, RoutedEventArgs e)
+        {
+            _helpWnd = new HelpWnd();
+            _helpWnd.Owner = this;
+            _helpWnd.ShowDialog();
         }
 
         private void boxView_CreateBox(object sender, Rect bounds)

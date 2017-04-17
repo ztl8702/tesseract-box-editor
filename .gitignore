@@ -50,6 +50,7 @@ build/
 [Bb]in/
 [Oo]bj/
 _Debug/
+_Release/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
