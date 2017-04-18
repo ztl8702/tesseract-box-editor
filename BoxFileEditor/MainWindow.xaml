@@ -36,23 +36,11 @@
                     <xctk:IntegerUpDown x:Name="udPage" Width="60" Value="{Binding SelPageIndex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Maximum="{Binding MaxPageIndex}" Minimum="0" />
                 </StackPanel>
                 <Separator Margin="5,0" />
-                <Button x:Name="menuZoomIn" Click="btnZoomIn_Click" IsEnabled="False">
-                    <StackPanel>
-                        <Grid HorizontalAlignment="Center">
-                            <local:BitmapControl Source="Images/Delete.png"/>
-                        </Grid>
-                        <TextBlock Text="ZoomIn"/>
-                    </StackPanel>
-                </Button>
-                <Button x:Name="menuZoomOut" Click="btnZoomOut_Click" IsEnabled="False">
-                    <StackPanel>
-                        <Grid HorizontalAlignment="Center">
-                            <local:BitmapControl Source="Images/Delete.png"/>
-                        </Grid>
-                        <TextBlock Text="ZoomOut"/>
-                    </StackPanel>
-                </Button>
-                <Slider x:Name="sliderScale"  Margin="0,0,0,0.2" Width="69" Maximum="1" Minimum="0" Value="1" ValueChanged="sliderScale_ValueChanged"></Slider>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="Zoom:" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                    <Slider x:Name="sliderScale"  Margin="0,0,0,0.2" Width="69" Maximum="1" Minimum="0" Value="1" ValueChanged="sliderScale_ValueChanged"></Slider>
+                    <TextBlock Text="{Binding ElementName=sliderScale, Path=Value, Mode=OneWay,StringFormat={}{0:0.##}}" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                </StackPanel>
                 <Separator Margin="5,0" />
                 <Button x:Name="menuMerge" Click="btnMerge_Click">
                     <StackPanel>
