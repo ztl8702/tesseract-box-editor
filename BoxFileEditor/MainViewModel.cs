@@ -184,7 +184,7 @@ namespace BoxFileEditor
         private void UpdateCroppedImage()
         {
             var selectedItem = SelectedItem;
-            if (selectedItem == null)
+            if (selectedItem == null || (selectedItem?.Width??0)==0 || (selectedItem?.Height ?? 0) == 0)
             {
                 SelectedBoxImage = null;
             }
