@@ -18,13 +18,13 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
                     <TextBlock Text="X:" VerticalAlignment="Center"/>
-                    <xctk:IntegerUpDown x:Name="udX" Width="60" Margin="3,0,0,0" IsEnabled="{Binding CanEditSingleBox}" Value="{Binding SelectedItem.Left, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    <xctk:IntegerUpDown x:Name="udX" Width="60" Margin="3,0,0,0" Minimum="0" IsEnabled="{Binding CanEditSingleBox}" Value="{Binding SelectedItem.Left, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                     <TextBlock Text="Y:" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                    <xctk:IntegerUpDown x:Name="udY" Width="60" Margin="3,0,0,0" IsEnabled="{Binding CanEditSingleBox}" Value="{Binding SelectedItem.Top, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <xctk:IntegerUpDown x:Name="udY" Width="60" Margin="3,0,0,0" Minimum="0" IsEnabled="{Binding CanEditSingleBox}" Value="{Binding SelectedItem.Top, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                     <TextBlock Text="W:" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                    <xctk:IntegerUpDown x:Name="udW" Width="60" Margin="3,0,0,0" IsEnabled="{Binding CanEditSingleBox}" Value="{Binding SelectedItem.Width, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <xctk:IntegerUpDown x:Name="udW" Width="60" Margin="3,0,0,0" Minimum="0" IsEnabled="{Binding CanEditSingleBox}" Value="{Binding SelectedItem.Width, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                     <TextBlock Text="H:" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                    <xctk:IntegerUpDown x:Name="udH" Width="60" Margin="3,0,0,0" IsEnabled="{Binding CanEditSingleBox}" Value="{Binding SelectedItem.Height, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <xctk:IntegerUpDown x:Name="udH" Width="60" Margin="3,0,0,0" Minimum="0" IsEnabled="{Binding CanEditSingleBox}" Value="{Binding SelectedItem.Height, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

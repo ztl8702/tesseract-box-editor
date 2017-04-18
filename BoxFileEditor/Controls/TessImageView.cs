@@ -83,13 +83,13 @@ namespace BoxFileEditor
         public int ResizedWidth {
             get
             {
-                return (int)(Math.Round(Scale * Image.PixelWidth));
+                return (int)(Math.Round(Scale * (Image?.PixelWidth??0)));
             }
         }
         public int ResizedHeight {
             get
             {
-                return (int)(Math.Round(Scale * Image.PixelHeight));
+                return (int)(Math.Round(Scale * (Image?.PixelHeight??0)));
             }
         }
 
@@ -132,9 +132,14 @@ namespace BoxFileEditor
                 if (box != null)
                 {
                     if (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift))
-                        box.Width--;
+                    {
+                        if (box.Width>0) box.Width--;
+                    }
                     else
-                        box.Left--;
+                    {
+                        if (box.Left>0) box.Left--;
+                    }
+                       
                 }
                 e.Handled = true;
             }
@@ -143,9 +148,14 @@ namespace BoxFileEditor
                 if (box != null)
                 {
                     if (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift))
-                        box.Width++;
+                    {
+                        if (box.Width + box.Left < Image.PixelWidth) box.Width++;
+                    }
                     else
-                        box.Left++;
+                    {
+                        if (box.Width + box.Left < Image.PixelWidth) box.Left++;
+                    }
+;
                 }
                 e.Handled = true;
             }
@@ -154,9 +164,14 @@ namespace BoxFileEditor
                 if (box != null)
                 {
                     if (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift))
-                        box.Height--;
+                    {
+                        if (box.Height>0) box.Height--;
+                    }
                     else
-                        box.Top--;
+                    {
+                        if (box.Top>0) box.Top--;
+                    }
+
                 }
                 e.Handled = true;
             }
@@ -165,9 +180,13 @@ namespace BoxFileEditor
                 if (box != null)
                 {
                     if (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift))
-                        box.Height++;
+                    {
+                        if (box.Height + box.Top < Image.PixelHeight) box.Height++;
+                    }
                     else
-                        box.Top++;
+                    {
+                        if (box.Height + box.Top < Image.PixelHeight) box.Top++;
+                    }
                 }
                 e.Handled = true;
             }
